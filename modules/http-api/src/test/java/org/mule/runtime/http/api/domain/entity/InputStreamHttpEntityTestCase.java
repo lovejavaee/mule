@@ -16,10 +16,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import sun.misc.IOUtils;
 
 @Feature(HTTP_SERVICE)
 @Story("Entities")
@@ -63,8 +63,8 @@ public class InputStreamHttpEntityTestCase {
     InputStream content = entity.getContent();
     assertThat(content, equalTo(stream));
 
-    assertThat(IOUtils.readFully(content, -1, true), equalTo("+".getBytes()));
-    assertThat(IOUtils.readFully(entity.getContent(), -1, true).length, is(0));
+    assertThat(IOUtils.toByteArray(content), equalTo("+".getBytes()));
+    assertThat(IOUtils.toByteArray(entity.getContent()).length, is(0));
   }
 
   @Test

@@ -16,8 +16,8 @@ import java.io.IOException;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.apache.commons.io.IOUtils;
 import org.junit.Test;
-import sun.misc.IOUtils;
 
 @Feature(HTTP_SERVICE)
 @Story("Entities")
@@ -43,8 +43,8 @@ public class ByteArrayHttpEntityTestCase {
 
   @Test
   public void providesNewStream() throws IOException {
-    assertThat(IOUtils.readFully(entity.getContent(), -1, true), equalTo(content));
-    assertThat(IOUtils.readFully(entity.getContent(), -1, true), equalTo(content));
+    assertThat(IOUtils.toByteArray(entity.getContent()), equalTo(content));
+    assertThat(IOUtils.toByteArray(entity.getContent()), equalTo(content));
   }
 
   @Test
